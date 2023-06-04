@@ -11,3 +11,11 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }
+
+
+class controller extends routeController
+{
+    public function test(){
+        echo '<h1>hello world!</h1>';
+    }
+}

@@ -10,6 +10,7 @@ header {
 .headerLogo a {
   display: block;
   font-size: 25px;
+  padding-right: 30px;
 }
 
 .headerSearch {

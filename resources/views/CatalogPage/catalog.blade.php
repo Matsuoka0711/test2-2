@@ -23,7 +23,7 @@
   </header>
 
   <div class="itemAdd">
-    <a href="{{ route('catalog') }}">商品登録</a>
+    <a href="{{ asset('add/catalogAdd.blade.php') }}">商品登録</a>
   </div>
 
   <main>

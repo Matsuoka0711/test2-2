@@ -15,7 +15,7 @@
                     @endif
 
                     {{ __('You are logged in!') }}
-                    <a href="{{ route('catalog.index') }}">商品画面一覧へ</a>
+                    <a href="{{ route('catalog') }}">商品画面一覧へ</a>
                 </div>
                
             </div>

@@ -15,7 +15,7 @@
                     @endif
 
                     {{ __('You are logged in!') }}
-                    <a href="views/index.php" style="display: block;">商品画面一覧へ</a>
+                    <a href="" style="display: block;">商品画面一覧へ</a>
                 </div>
                
             </div>

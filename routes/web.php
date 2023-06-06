@@ -21,6 +21,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/catalog', 'CatalogController@index')->name('catalog');
+// Route::get('/catalog', 'CatalogController@index')->name('catalog');
+
+Route::get('/catalog', function () {return view('CatalogPage.catalog');})->name('catalog');
 
 

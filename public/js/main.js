@@ -1,39 +1,39 @@
-function addProduct() {
-  // 入力値の取得
-  var productName = document.getElementById('productName').value;
-  var price = document.getElementById('price').value;
-  var stock = document.getElementById('stock').value;
-  var manufacturer = document.getElementById('manufacturer').value;
-  var description = document.getElementById('description').value;
+' use scrict';
+{
+  const name = document.getElementById('name').value;
+  const price = document.getElementById('price').value;
+  const stock = document.getElementById('stock').value;
+  const maker = document.getElementById('maker').value;
+  const btn = document.getElementById('btn');
+  
+  function addProduct () {
+    //tableの設定(trを追加してid属性を付与「id = "product + 行の番号"」)
+    const table = document.getElementById('productTable');
+    const tableCount = table.rows.length;
+    const productNumber = tableCount;
+    
+    const tableAdd = document.createElement('tr');
+    tableAdd.setAttribute('id', 'product'.tableCount);
 
-  // 商品IDの生成（既存の行数+1）
-  var table = document.getElementById('productTable');
-  var rowCount = table.rows.length;
-  var productId = rowCount;
-
-  // 新しい行の作成
-  var newRow = document.createElement('tr');
-  newRow.setAttribute('id', 'product' + productId);
-
-  // 新しい行のHTMLコード
-  newRow.innerHTML = `
-    <td>${productId}</td>
-    <td><img src="" alt="画像なし"></td>
-    <td>${productName}</td>
+    tableAdd.innerHTML = 
+    `
+    <td>${productNumber}</td>
+    <td>${productNumber}</td>
+    <td>${name}</td>
     <td>${price}</td>
     <td>${stock}</td>
-    <td>${manufacturer}</td>
-    <td>${description}</td>
-    <td><button onclick="deleteProduct(${productId})">削除</button></td>
-  `;
+    <td>${maker}</td>
+    <td><input id="btn" value="削除" type="submit"></td>
+    `
+  
+    table.appendChild(tableAdd);
 
-  // 新しい行をテーブルに追加
-  table.appendChild(newRow);
+    document.getElementById('name').value = '';
+    document.getElementById('price').value = '';
+    document.getElementById('stock').value = '';
+    document.getElementById('maker').value = '';
+  }
 
-  // 入力値のリセット
-  document.getElementById('productName').value = '';
-  document.getElementById('price').value = '';
-  document.getElementById('stock').value = '';
-  document.getElementById('manufacturer').value = '';
-  document.getElementById('description').value = '';
+  const delBtn = document.getElementById('delBtn');
+
 }

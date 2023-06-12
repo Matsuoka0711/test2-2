@@ -38,7 +38,7 @@
       </div>
     
       <div class="add">
-        <input id="addBtn" type="submit" value="送信" onclick="addProduct()">
+        <input id="addBtn" type="button" value="送信">
       </div>
     </div>
     <div class="productList">
@@ -60,11 +60,11 @@
           <td>120</td>
           <td>2</td>
           <td>コカコーラ</td>
-          <td><input id="delBtn" value="削除" type="submit" onclick="removeProduct()"></td>
+          <td><button id="delBtn" type="button">削除</button></td>
         </tr>
       </table>
     </div>
   </main>
+  <script src="{{ asset('js/main.js') }}"></script>
 </body>
-<script src="{{ asset('js/main.js') }}"></script>
 </html>

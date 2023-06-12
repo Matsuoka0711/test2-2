@@ -1,86 +1,20 @@
-header {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  background-color: #eee;
-  padding: 50px;
-  color: #333;
-}
-
-.headerLogo a {
-  display: block;
-  font-size: 25px;
-  padding-right: 30px;
-}
-
-.headerSearch {
-  display: flex;
-}
-
-.bi-search {
-  font-size: 25px;
-  cursor: pointer;
-  padding-left: 20px;
-}
-
-.searchBox input {
-  height: 100%;
-  padding: 5px;
-  border-bottom: 1px solid #333;
-}
-
-.itemAdd {
-  width: 100%;
-  padding: 50px 50px 0 50px;
-}
-
-.itemAdd a {
-  width: 200px;
-  text-align: center;
-  margin-left: 30px;
-  display: block;
-  padding: 20px 50px;
-  background-color: #ddd;
-  box-shadow: #333 3px 5px;
-  cursor: pointer;
-}
-
-.itemAdd a:active {
-  transform: translate(3px, 5px);
-  box-shadow: none;
-}
-
-main {
-  width: 100%;
-  padding: 50px;
-}
-
-.shopA {
-  width: 100%;
-  padding: 30px;
-}
-
-.ollShopBox h2 {
-  width: 100%;
-  margin-bottom: 30px;
-  color: #333;
-  border-bottom: 3px solid #ab2020;
-}
-
-.shopContents {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.shopBox {
-  width: 30%;
-  margin-right: 3%;
-  margin-bottom: 30px;
-}
-
-.shopImage {
-  width: 100%;
-  padding-bottom: 100%;
-  border: 1px solid #333;
-}
+table {
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid black;
+    padding: 5px;
+  }
+  
+  label{
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  input, textarea,select {
+    margin-bottom: 18px;
+  }
+  h1{
+    width: 300px;
+    border-bottom: 2px solid red;
+  }

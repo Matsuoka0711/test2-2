@@ -8,39 +8,9 @@
 </head>
 <body>
   <main>
-
-    <div class="productAdd">
-      <h1>商品追加</h1>
-      <div class="add">
-        <label for="">商品画像</label>
-        <input type="file" id="img">
-      </div>
-    
-      <div class="add">
-        <label for="">商品名</label>
-        <input type="text" id="name">
-      </div>
-    
-      <div class="add">
-        <label for="">価格</label>
-        <input type="text" id="price">
-      </div>
-    
-      <div class="add">
-        <label for="">在庫数</label>
-        <input type="number" id="stock">
-      </div>
-      
-      <div class="add">
-        <label for="">メーカー名</label>
-        <input type="text" id="maker">
-    
-      </div>
-    
-      <div class="add">
-        <input id="addBtn" type="button" value="送信">
-      </div>
-    </div>
+   <nav>
+    <a href="{{ route('catalogAdd') }}">商品追加画面</a>
+   </nav>
     <div class="productList">
       <h1>商品一覧</h1>
       <table id="productTable">
@@ -55,7 +25,7 @@
         </tr>
         <tr>
           <td>1</td>
-          <td><img src="" alt="画像なし"></td>
+          <td><img id="productImage" src="" alt="画像がありません。"></td>
           <td>コーラ</td>
           <td>120</td>
           <td>2</td>

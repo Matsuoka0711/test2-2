@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    {{ __('認証に成功しました。') }}
                     <a href="{{ route('catalog') }}">商品画面一覧へ</a>
                 </div>
                

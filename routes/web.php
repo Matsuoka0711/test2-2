@@ -23,4 +23,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/catalog', function () {return view('CatalogPage.catalog');})->name('catalog');
 
+Route::get('/catalogAdd', function () {return view('CatalogPage.catalogAdd');})->name('catalogAdd');
+
 

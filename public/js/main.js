@@ -1,5 +1,25 @@
 'use strict';
 
+// {
+//   const addBtn = document.getElementById('addBtn');
+//   addBtn.addEventListener('click', function() {
+//     console.log('hello');
+  
+//     // データを保存する
+//     localStorage.setItem('message', 'hello');
+//   });
+
+//   window.addEventListener('load', function() {
+//     // 保存されたデータを取得する
+//     const savedMessage = localStorage.getItem('message');
+//     if (savedMessage) {
+//       console.log(savedMessage);
+//     }
+//   });
+  
+// }
+
+
   {
     const addBtn = document.getElementById('addBtn');
     const table = document.getElementById('productTable');

@@ -24,13 +24,13 @@
           <th>削除</th>
         </tr>
         <tr>
-          <td>1</td>
+          <!-- <td>1</td>
           <td><img id="productImage" src="" alt="画像がありません。"></td>
           <td>コーラ</td>
           <td>120</td>
           <td>2</td>
           <td>コカコーラ</td>
-          <td><button id="delBtn" type="button">削除</button></td>
+          <td><button id="delBtn" type="button">削除</button></td> -->
         </tr>
       </table>
     </div>

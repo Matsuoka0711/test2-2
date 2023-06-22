@@ -7,34 +7,56 @@
   <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 </head>
 <body>
-  <main>
-   <nav>
-    <a href="{{ route('catalogAdd') }}">商品追加画面</a>
-   </nav>
-    <div class="productList">
-      <h1>商品一覧</h1>
-      <table id="productTable">
-        <tr>
-          <th>id</th>
-          <th>商品画像</th>
-          <th>商品名</th>
-          <th>価格</th>
-          <th>在庫数</th>
-          <th>メーカー名</th>
-          <th>削除</th>
-        </tr>
-        <tr>
-          <!-- <td>1</td>
-          <td><img id="productImage" src="" alt="画像がありません。"></td>
-          <td>コーラ</td>
-          <td>120</td>
-          <td>2</td>
-          <td>コカコーラ</td>
-          <td><button id="delBtn" type="button">削除</button></td> -->
-        </tr>
-      </table>
+  <a href="{{ route('catalogAdd') }}">商品追加画面</a>
+  <div class="container">
+      <div class="Contact">
+        <h2>CONTACT</h2>
+        <form action="">
+          <dl>
+            <dt>
+              <label for="">id</label>
+            </dt>
+            <dd>
+              <input placeholder="数字を入力" id="id" type="text">
+            </dd>
+            <dt>
+              <label for="">NAME</label>
+            </dt>
+            <dd>
+              <input placeholder="名前" id="name" type="text">
+            </dd>
+            <dt>
+              <label for="">E-MAIL</label> 
+            </dt>
+            <dd>
+              <input placeholder="メールアドレス" id="mail" type="text">
+            </dd>
+            <dt>
+              <label for="">MESSAGE</label>
+            </dt>
+            <dd>
+              <textarea placeholder="説明文を入力" id="message" name="" id="" ></textarea>
+            </dd>
+          </dl>
+
+          <button id="addBtn" type="button">送信</button>
+        </form>
+        <table id="productTable">
+          <tr>
+            <th>ID</th>
+            <th>名前</th>
+            <th>メールアドレス</th>
+            <th>メッセージ</th>
+            <th>削除</th>
+          </tr>
+        </table>
+      </div>
     </div>
-  </main>
+
+    <footer>
+      © 2020 My Work
+    </footer>
+  </div>
   <script src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>

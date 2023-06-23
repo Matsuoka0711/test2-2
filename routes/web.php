@@ -26,3 +26,5 @@ Route::get('/catalog', function () {return view('CatalogPage.catalog');})->name(
 Route::get('/catalogAdd', function () {return view('CatalogPage.catalogAdd');})->name('catalogAdd');
 
 
+
+

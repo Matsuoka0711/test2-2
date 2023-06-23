@@ -1,12 +1,8 @@
-.tableForm {
-  display: none;
-}
-
 body {
   width: 100%;
 }
 
-.container {
+.containerAdd {
   width: 100%;
 }
 
@@ -54,18 +50,43 @@ header h2 span a {
   color: #0393E3;
 }
 
-#productTable {
-  width: 100%;
-  border: 1px solid black;
-}
-
-#productTable tr th {
-  width: calc(100% / 8);
-  border: 1px solid #333;
-}
-
 .contents {
   padding: 50px;
+}
+
+.tableForm input{
+  display: block;
+  width: 300px;
+  border: 1px solid #333;
+  padding: 5px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.tableForm textarea {
+  display: block;
+  width: 300px;
+  border: 1px solid #333;
+  padding: 5px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+#addBtn {
+  width: 300px;
+  padding: 10px 0;
+  border-radius: 10px;
+  margin: auto;
+  background-color: #333;
+  color: #eee;
+  cursor: pointer;
+  
+}
+
+#addBtn:hover {
+  background-color: #eee;
+  color: #333;
+  border: 1px solid #333;
 }
 
 footer {
@@ -78,20 +99,4 @@ footer p {
   color: #eee;
   font-size: 10px;
   text-align: center;
-}
-
-
-
-
-
-/* .containerAdd .contents{
-  padding: 0;
-} */
-
-.containerAdd header,.containerAdd footer {
-  display: none;
-}
-
-.productTable {
-  display: block;
 }

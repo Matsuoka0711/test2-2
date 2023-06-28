@@ -30,7 +30,7 @@
         <textarea placeholder="コメント入力" id="comment"></textarea>
         <button id="addBtn" type="button">送信</button>
       </form>
-      
+      <!-- <img src="" width="100px" height="100px" id="inputImg" alt="画像が選ばれていません"> -->
       <!-- ↓使わない↓ -->
       <table id="productTable" 
       @if(Request::route()->getName() !== 'catalogAdd') style="display: table;" @else style="display: none;" @endif>

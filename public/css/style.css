@@ -64,6 +64,11 @@ header h2 span a {
   border: 1px solid #333;
 }
 
+#productTable tr td {
+  border-right: 1px solid #333;
+  border-bottom: 1px solid #333;
+}
+
 .contents {
   padding: 50px;
 }

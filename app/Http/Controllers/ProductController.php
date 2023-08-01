@@ -3,34 +3,84 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product; // Product モデルをインポート
+use App\Models\Product;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
-    public function store(Request $request)
+    public function showList() 
     {
-        // フォームからのデータを取得します
-        $id = $request->input('id');
-        $img = $request->file('img');
-        $name = $request->input('name');
-        $price = $request->input('price');
-        $stock = $request->input('stock');
-        $maker = $request->input('maker');
+        // インスタンス生成
+        $model = new Product();
+        $products = $model->getList();
 
-        // 取得したデータをデータベースに保存するなどの処理を行います
-
-        // 商品を作成してデータベースに保存する例
-        $product = new Product;
-        $product->id = $id;
-        $product->img = $img;
-        $product->name = $name;
-        $product->price = $price;
-        $product->stock = $stock;
-        $product->maker = $maker;
-        $product->save();
-
-        // 成功時のリダイレクトやメッセージ表示などの処理を追加します
-
-        return redirect()->route('catalog')->with('success', '商品が追加されました');
+        return view('page.list', ['products' => $products]);
     }
+
+    public function showRegistForm() 
+    {
+        return view('page.regist');
+    }
+
+    public function registSubmit(ProductRequest $request) 
+    {
+
+        // トランザクション開始
+        DB::beginTransaction();
+    
+        try {
+            // 登録処理呼び出し
+            $model = new Product();
+            $model->registProduct($request);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back();
+        }
+    
+        // 処理が完了したらregistにリダイレクト
+        return redirect(route('regist'));
+    }
+
+    public function show($id) 
+    {
+        $product = Product::find($id);
+        
+        
+        return view('page.show', [
+            'product' => $product,
+        ]);
+    }
+
+    public function showUpdate($id)
+    {
+        $product = Product::find($id);
+
+        return view('page.update',[
+            'product' => $product,
+        ]);
+    }
+
+    
+public function update($id)
+{
+
+    $request->validate([
+        '_token' => 'required|csrf',
+    ]);
+
+
+    $product = Product::find($id);
+    $product->name = request('name');
+    $product->price = request('price');
+    $product->stock = request('stock');
+    $product->maker = request('maker');
+    $product->comment = request('comment');
+
+    $product->save();
+    return redirect()->route('product.show', $product->id)->with('success', '商品を更新しました。');
+}
+
+
 }

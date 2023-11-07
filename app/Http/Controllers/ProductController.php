@@ -138,7 +138,6 @@ class ProductController extends Controller
     // 検索処理
     public function searchPost(Request $request) 
     {
-        // 検索処理を終わらせたらgitに出して提出
         if (isset($request->search)) {
             $products = Product::
                 where("name", "LIKE", "%$request->search%")

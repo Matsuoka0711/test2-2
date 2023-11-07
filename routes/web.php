@@ -17,7 +17,7 @@ Route::get('/', function () {return view('welcome');});
 
 Auth::routes();
 
-Route::get('/home', 'App\Http\Controllers\HomeController@index');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/index', function () {return view('page.index');})->name('index');
 
@@ -31,4 +31,11 @@ Route::get('/product/{id}', [App\Http\Controllers\ProductController::class, 'sho
 
 Route::get('/update/{id}',[App\Http\Controllers\ProductController::class, 'showUpdate'])->name('show.update');
 
-Route::put('/update/{id}', [App\Http\Controllers\ProductController::class, 'update'])->name('product.update');
+Route::post('/update/{id}',[App\Http\Controllers\ProductController::class, 'productUpdate'])->name('product.update');
+
+Route::post('/delete/{id}', [App\Http\Controllers\ProductController::class, 'productDestroy'])->name('product.destroy');
+
+Route::post('/search', [App\Http\Controllers\ProductController::class, 'searchPost'])->name('searchPost');
+
+
+

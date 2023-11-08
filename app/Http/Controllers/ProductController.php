@@ -35,9 +35,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         
-        return view('page.show', [
-            'product' => $product,
-        ]);
+        return view('page.show', ['product' => $product,]);
     }
 
     // update(view)へ推移

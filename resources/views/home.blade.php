@@ -14,8 +14,8 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
-                    <a href="" style="display: block;">商品画面一覧へ</a>
+                    {{ __('認証に成功しました。') }}
+                    <a href="{{ route('list') }}">商品画面一覧へ</a>
                 </div>
                
             </div>

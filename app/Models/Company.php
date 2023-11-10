@@ -24,6 +24,4 @@ class Company extends Model{
     protected $fillable = [
         'company_id',
     ];
- 
-
 }

@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('title', '投稿画面')
-
 @section('content')
 
 <div class="container">
@@ -35,7 +33,7 @@
       <tbody >
         @if ($products->count() === 0)
           <tr>
-            <td colspan="8" class="text-center">商品が登録されていません。</td>
+            <td colspan="8" class="text-center">商品が登録されていません</td>
           </tr>
         @else
         @foreach ($products as $product)

@@ -29,7 +29,7 @@
                 @else
                 <img src="{{ asset($product->img_path) }}" alt="" width="100px" height="100px">
                 @endif
-                <p class="m-0 mt-3">変更前の画像</p>
+                <p class="m-0 mt-3">変更前</p>
             </div>
         </td>
     </tr>

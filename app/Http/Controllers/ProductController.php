@@ -24,9 +24,11 @@ class ProductController extends Controller
     // list(view)へ推移
     public function showList() {
         $products = Product::with('company')->paginate(4);
+        $companies = Company::all();
 
         return view('page.list', [
             'products' => $products,
+            'companies' => $companies,
         ]);
     }
 
@@ -56,89 +58,99 @@ class ProductController extends Controller
     public function registSubmit(ProductRequest $request) 
     {
         DB::beginTransaction();
-        
-        $product = new Product();
-        
-        if($request->img_path !== null){
-            // 値が入っていた場合$file_nameに取得した画像の名前を代入
-            $file_name = $request->file('img_path')->getClientOriginalName();
+        try{
+            $product = new Product();
             
-            $request->file('img_path')->storeAs('public/sample', $file_name);
-            $product->img_path = 'storage/sample/' . $file_name;
-            $request->merge(['img_path' => 'storage/sample/' . $file_name]);
-        }else{
-            // 値がnullの場合$file_nameはnullのまま処理を進める
-            $file_name = null;
+            if($request->img_path !== null){
+                // 値が入っていた場合$file_nameに取得した画像の名前を代入
+                $file_name = $request->file('img_path')->getClientOriginalName();
+                
+                $request->file('img_path')->storeAs('public/sample', $file_name);
+                $product->img_path = 'storage/sample/' . $file_name;
+                $request->merge(['img_path' => 'storage/sample/' . $file_name]);
+                return redirect()->route('regist')->with('massage', '登録しました');
+            }else{
+                // 値がnullの場合$file_nameはnullのまま処理を進める
+                $file_name = null;
+
+                $product->registProduct($request, $file_name);
+                DB::commit();
+            
+            return redirect()->route('regist')->with('massage', '商品を登録しました');
+            }
+        }catch(Exception $e){
+            // 例外処理
+            return redirect()->route('regist')->with('massage', '登録に失敗しました');
+            DB::rollBack();
         }
-        
-        $product->registProduct($request, $file_name);
-        
-        DB::commit();
-        
-        return redirect()->route('regist')->with('massage', '登録しました');
     }
     
     // 更新処理
-    public function productUpdate(Request $request, $id)
-    {   
-        $product = Product::findOrFail($id);
+    public function productUpdate(ProductRequest $request, $id)
+    {  
+        DB::beginTransaction();
+        try {
+            $product = Product::findOrFail($id);
 
-        // 変更後の画像を保存
-        if($request->file('img_path') !== null){
-            // 値が入っていた場合$file_nameに取得した画像の名前を代入して保存
-            $file_name = $request->file('img_path')->getClientOriginalName();
-            $request->file('img_path')->storeAs('public/sample', $file_name);
-        }else{
-            // 画像が選択されていなかったら$file_nameをnullで登録
-            $file_name = null;
+            // 変更後の画像を保存
+            if($request->file('img_path') !== null){
+                // 値が入っていた場合$file_nameに取得した画像の名前を代入して保存
+                $file_name = $request->file('img_path')->getClientOriginalName();
+                $request->file('img_path')->storeAs('public/sample', $file_name);
+            }else{
+                // 画像が選択されていなかったら$file_nameをnullで登録
+                $file_name = '';
+            }
+
+            // 変更前の画像を消去
+            \Illuminate\Support\Facades\File::delete($product->img_path);
+
+            $product->updataProduct($request, $file_name, $product);
+            
+            DB::commit();
+
+            return view('page/show', compact('product'));
+        } catch (Exception $e) {
+            return redirect()->route('list')->with('massage', '登録に失敗しました');
+            DB::rollBack();
         }
-
-        // 変更前の画像を消去
-        \Illuminate\Support\Facades\File::delete($product->img_path);
         
-        if($file_name !== null){
-            // $file_nameに値が入っていたらその値をimg_pathに使用
-            $product->img_path = 'storage/sample/' . $file_name;
-        }else{
-            // $file_nameに値が入っていなかったらimg_pathは空白で登録
-            $product->img_path = '';
-        }
-        // その他変更事項を取得
-        $product->name = $request->input('name');
-        $product->price = $request->input('price');
-        $product->stock = $request->input('stock');
-        $product->company_id = $request->input('company_id');
-        $product->comment = $request->input('comment');
-        $product->updated_at = Carbon::now();
-
-        // 更新実行
-        $product->save();
-    
-        return view('page/show', compact('product'));
     }
 
     // 削除処理
     public function productDestroy($id)
     {
-        $product = Product::find($id);
-    
-        $product->delete();
-    
-        $products = $product->getList();
-        $product = $product;
+        DB::beginTransaction();
 
-        // 画像を削除
-        \Illuminate\Support\Facades\File::delete($product->img_path);
+        try {
+            $product = Product::find($id);
     
-        return redirect()->route('list');
+            $product->delete();
+        
+            $products = $product->getList();
+            $product = $product;
+
+            // 画像を削除
+            \Illuminate\Support\Facades\File::delete($product->img_path);
+
+        } catch (Exception $e) {
+            return redirect()->route('list')->with('massage', '削除に失敗しました');
+            DB::rollBack();
+        }
+    
+        DB::commit();
+        return redirect()->route('list')->with('massage', '削除しました');
     }
     
     // 検索処理
     public function searchPost(Request $request) 
     {
-        if (isset($request->search)) {
+        $companies = Company::all();
+        // dd($request->company_id_search);
+        if (isset($request->name_search)) {
             $products = Product::
-                where("name", "LIKE", "%$request->search%")
+                where("name", "LIKE", "%$request->name_search%")
+                ->orWhere('company_id', $request->company_id_search)
                 ->paginate(4);
             }
         else {
@@ -148,6 +160,7 @@ class ProductController extends Controller
         return view('page.list', [
             'products' => $products,
             'search' => $request->search,
+            'companies' => $companies,
         ]);
     }
 }

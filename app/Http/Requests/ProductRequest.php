@@ -25,19 +25,18 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required',
             'name' => 'required|max:25',
             'price' => 'required|numeric',
             'stock' => 'required|numeric',
             'comment' => 'required',
             'img_path' => 'nullable|image|max:2048',
+            'company_id' => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'id.required' => '商品IDを入力してください。',
             'name.required' => '商品名を入力してください。',
             'name.max' => '商品名は25文字以内で入力してください。',
             'price.required' => '価格を入力してください。',
@@ -45,6 +44,7 @@ class ProductRequest extends FormRequest
             'stock.required' => '在庫数を入力してください。',
             'stock.numeric' => '在庫数は数値で入力してください。',
             'comment.required' => 'コメントを入力してください。',
+            'company_id.required' => '選択されていません',
             'img_path.file' => 'このファイルはアップロードできません',
         ];
     }

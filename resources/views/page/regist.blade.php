@@ -15,14 +15,6 @@
                 @csrf
 
                 <div class="from-group mb-4">
-                    <label for="">ID ※半角数字で入力してください / 登録IDは使用できません</label>
-                    <input type="text" class="form-control" id="id" name="id" placeholder="IDを入力">
-                    @error('id')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                <div class="from-group mb-4">
                     <label for="">商品名</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="商品名を入力">
                     @error('name')
@@ -57,7 +49,7 @@
                 <div class="from-group mb-4">
                     <label for="">メーカー名</label>
                     <select class="p-2 w-100 form-select" name="company_id" id="">
-                        <option>クリックして選択</option>
+                        <option value="null">選択されていません</option>
                         @foreach ($companies as $company)
                         <option value="{{ $company->id }}">{{ $company->company_name }}</option>
                         @endforeach

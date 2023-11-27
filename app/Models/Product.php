@@ -65,13 +65,8 @@ class Product extends Model
     // 更新処理
     public function updataProduct($request, $file_name, $product)
     {
-        if($file_name !== null){
-            // $file_nameに値が入っていたらその値をimg_pathに使用
-            $product->img_path = 'storage/sample/' . $file_name;
-        }else{
-            // $file_nameに値が入っていなかったらimg_pathは空白で登録
-            $product->img_path = null;
-        }
+        // dd($file_name);
+            $product->img_path = $file_name;
 
         // その他変更事項を取得
         $product->name = $request->input('name');

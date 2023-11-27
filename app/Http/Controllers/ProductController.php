@@ -91,19 +91,19 @@ class ProductController extends Controller
         DB::beginTransaction();
         try {
             $product = Product::findOrFail($id);
-
+            
             // 変更後の画像を保存
             if($request->file('img_path') !== null){
                 // 値が入っていた場合$file_nameに取得した画像の名前を代入して保存
-                $file_name = $request->file('img_path')->getClientOriginalName();
+                $file_name = 'storage/sample/' . $request->file('img_path')->getClientOriginalName();
                 $request->file('img_path')->storeAs('public/sample', $file_name);
+                
+                // 変更前の画像を消去
+                \Illuminate\Support\Facades\File::delete($product->img_path);
             }else{
-                // 画像が選択されていなかったら$file_nameをnullで登録
-                $file_name = '';
+                // 画像が選択されていなかったら変更しない
+                $file_name = $product->img_path;
             }
-
-            // 変更前の画像を消去
-            \Illuminate\Support\Facades\File::delete($product->img_path);
 
             $product->updataProduct($request, $file_name, $product);
             
@@ -114,7 +114,6 @@ class ProductController extends Controller
             return redirect()->route('list')->with('massage', '登録に失敗しました');
             DB::rollBack();
         }
-        
     }
 
     // 削除処理

@@ -4,7 +4,7 @@
 <div class="container">
     <a class="btn btn-secondary mb-3 me-3" href="{{ route('list') }}" role="button">戻る</a>
     <a class="btn btn-warning mb-3" href="{{ route('show.update', $product->id) }}">編集</a>
-
+    
     <table class="table table-striped text-center table-bordered">
         <tr>
             <th class="p-4 w-25">ID</th>

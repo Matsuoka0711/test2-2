@@ -15,6 +15,9 @@
         <th class="p-3 align-middle w-25">商品名</th>
         <td class="p-3 text-sm-start">
             <input type="text" value="{{ $product->name }}" name="name" class="form-control">
+            @error('name')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
         </td>
     </tr>
     <tr>
@@ -37,12 +40,18 @@
         <th class="p-3 align-middle">商品価格</th>
         <td class="p-3 text-sm-start">
             <input type="text" name="price" id="price" value="{{ $product->price }}" class="form-control">
+            @error('price')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
         </td>
     </tr>
     <tr>
         <th class="p-3 align-middle">在庫数</th>
         <td class="p-3 text-sm-start">
             <input type="text" name="stock" id="stock" value="{{ $product->stock }}" class="form-control">
+            @error('stock')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
         </td>
     </tr>
     <tr>
@@ -55,6 +64,9 @@
                 <option value="{{ $company->id }}">{{ $company->company_name }}</option>
                 @endif
                 @endforeach
+                @error('company_id')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
             </select>
         </td>
       </tr>
@@ -62,6 +74,9 @@
         <th class="p-3 align-middle">コメント</th>
         <td class="p-3 text-sm-start">
             <textarea type="text" name="comment" id="comment" class="form-control">{{ $product->comment }}</textarea>
+            @error('comment')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
         </td>
       </tr>
     </table>

@@ -68,21 +68,21 @@ class ProductController extends Controller
                 $request->file('img_path')->storeAs('public/sample', $file_name);
                 $product->img_path = 'storage/sample/' . $file_name;
                 $request->merge(['img_path' => 'storage/sample/' . $file_name]);
-                return redirect()->route('regist')->with('massage', '登録しました');
             }else{
                 // 値がnullの場合$file_nameはnullのまま処理を進める
                 $file_name = null;
 
                 $product->registProduct($request, $file_name);
-                DB::commit();
-            
-            return redirect()->route('regist')->with('massage', '商品を登録しました');
             }
+            
+            DB::commit(); // ②修正済
+            
         }catch(Exception $e){
             // 例外処理
             return redirect()->route('regist')->with('massage', '登録に失敗しました');
             DB::rollBack();
         }
+        return redirect()->route('regist')->with('massage', '商品を登録しました'); // ②修正済
     }
     
     // 更新処理
